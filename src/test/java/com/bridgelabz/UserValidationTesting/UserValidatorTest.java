@@ -69,4 +69,44 @@ public class UserValidatorTest
     	boolean result = validator.lastNameValidation("Yada%v");
     	Assert.assertFalse(result);	
     }
+	
+	@Test
+    public void givenEmail_WhenProper_ShouldReturnTrue()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.emailValidation("abc@gmail.com");
+    	Assert.assertEquals(true,result);	
+    }
+	
+	@Test
+    public void givenEmail_WhenContainsOptionalPart_ShouldReturnTrue()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.emailValidation("abc44.holy@gmail.co.in");
+    	Assert.assertEquals(true,result);	
+    }
+	
+	@Test
+    public void givenEmail_WhenTwoConsecutiveDots_ShouldReturnFalse()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.emailValidation("a..bc@gmail.com");
+    	Assert.assertEquals(false,result);	
+    }
+	
+	@Test
+    public void givenEmail_WhenOptionalShort_ShouldReturnFalse()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.emailValidation("abc.xyz@gmail.com.a");
+    	Assert.assertFalse(result);	
+    }
+	
+	@Test
+    public void givenEmail_WhenSpecialCharTld_ShouldReturnFalse()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.emailValidation("abc-100@gma@il.com.a");
+    	Assert.assertFalse(result);	
+    }
 }
