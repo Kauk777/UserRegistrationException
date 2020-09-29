@@ -109,4 +109,44 @@ public class UserValidatorTest
     	boolean result = validator.emailValidation("abc-100@gma@il.com.a");
     	Assert.assertFalse(result);	
     }
+	
+	@Test
+    public void givenPhoneNo_WhenProper_ShouldReturnTrue()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.mobileNoValidation("91 9801641805");
+    	Assert.assertEquals(true,result);	
+    }
+	
+	@Test
+    public void givenPhoneNo_WhenInvalidCountryCode_ShouldReturnFalse()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.mobileNoValidation("942 980164180");
+    	Assert.assertEquals(false,result);	
+    }
+	
+	@Test
+    public void givenPhoneNo_WhenShort_ShouldReturnFalse()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.mobileNoValidation("91 98016418");
+    	Assert.assertEquals(false,result);	
+    }
+	
+	@Test
+    public void givenPhoneNo_WhenWithoutSpace_ShouldReturnFalse()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.mobileNoValidation("919801641805");
+    	Assert.assertFalse(result);	
+    }
+	
+	@Test
+    public void givenPhoneNo_WhenStartWithZero_ShouldReturnFalse()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.mobileNoValidation("91 0801641805");
+    	Assert.assertFalse(result);	
+    }
 }
