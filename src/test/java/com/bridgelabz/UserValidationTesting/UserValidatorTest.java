@@ -21,4 +21,28 @@ public class UserValidatorTest
     	String mood = validator.analyseMood("This is happy message");
     	Assert.assertEquals("HAPPY", mood);	
     }
+	
+	@Test
+    public void givenFirstName_WhenProper_ShouldReturnTrue()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.firstNameValidation("Kaushal");
+    	Assert.assertEquals(true, result);	
+    }
+	
+	@Test
+    public void givenFirstName_WhenShort_ShouldReturnFalse()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.firstNameValidation("Ka");
+    	Assert.assertEquals(false, result);	
+    }
+	
+	@Test
+    public void givenFirstName_WhenNotProper_ShouldReturnFalse()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.firstNameValidation("Ka@ushal");
+    	Assert.assertFalse(result);	
+    }
 }
