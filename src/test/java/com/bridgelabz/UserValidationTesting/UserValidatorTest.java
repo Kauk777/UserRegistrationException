@@ -149,4 +149,20 @@ public class UserValidatorTest
     	boolean result = validator.mobileNoValidation("91 0801641805");
     	Assert.assertFalse(result);	
     }
+	
+	@Test
+    public void givenPassword_WhenProperLength_ShouldReturnTrue()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.passwordValidation("joshua84");
+    	Assert.assertEquals(true,result);	
+    }
+	
+	@Test
+    public void givenPassword_WhenNotProperLength_ShouldReturnFalse()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.passwordValidation("jo84a");
+    	Assert.assertEquals(false,result);	
+    }
 }
