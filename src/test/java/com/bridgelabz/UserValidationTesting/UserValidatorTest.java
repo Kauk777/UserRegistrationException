@@ -45,4 +45,28 @@ public class UserValidatorTest
     	boolean result = validator.firstNameValidation("Ka@ushal");
     	Assert.assertFalse(result);	
     }
+	
+	@Test
+    public void givenLastName_WhenProper_ShouldReturnTrue()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.lastNameValidation("Yadav");
+    	Assert.assertEquals(true,result);	
+    }
+	
+	@Test
+    public void givenLastName_WhenShort_ShouldReturnFalse()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.lastNameValidation("Ya");
+    	Assert.assertEquals(false,result);	
+    }
+	
+	@Test
+    public void givenLastName_WhenNotProper_ShouldReturnFalse()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.lastNameValidation("Yada%v");
+    	Assert.assertFalse(result);	
+    }
 }
