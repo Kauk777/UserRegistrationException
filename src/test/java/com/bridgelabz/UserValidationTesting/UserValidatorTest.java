@@ -154,8 +154,8 @@ public class UserValidatorTest
     public void givenPassword_WhenProperLength_ShouldReturnTrue()
     {
 		UserValidation validator=new UserValidation();
-    	boolean result = validator.passwordValidation("joshua84");
-    	Assert.assertEquals(true,result);	
+    	boolean result = validator.passwordValidation("Joshua@pattrick007");
+    	Assert.assertTrue(result);	
     }
 	
 	@Test
@@ -164,5 +164,21 @@ public class UserValidatorTest
 		UserValidation validator=new UserValidation();
     	boolean result = validator.passwordValidation("jo84a");
     	Assert.assertEquals(false,result);	
+    }
+	
+	@Test
+    public void givenPassword_WhenAtleastOneUpperCase_ShouldReturnTrue()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.passwordValidation("Joshua_847");
+    	Assert.assertTrue(result);	
+    }
+	
+	@Test
+    public void givenPassword_WhenNoUpperCase_ShouldReturnFalse()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.passwordValidation("joshua_847");
+    	Assert.assertFalse(result);	
     }
 }
