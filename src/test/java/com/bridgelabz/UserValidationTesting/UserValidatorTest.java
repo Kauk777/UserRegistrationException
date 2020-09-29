@@ -197,4 +197,20 @@ public class UserValidatorTest
     	boolean result = validator.passwordValidation("Joshua@patrick");
     	Assert.assertFalse(result);	
     }
+	
+	@Test
+    public void givenPassword_WhenProperWithSpecialChar_ShouldReturnTrue()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.passwordValidation("Joshua@patrick98");
+    	Assert.assertTrue(result);	
+    }
+	
+	@Test
+    public void givenPassword_WhenProperWithoutSpecialChar_ShouldReturnFalse()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result = validator.passwordValidation("Joshuapatrick98");
+    	Assert.assertFalse(result);	
+    }
 }
