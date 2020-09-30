@@ -24,193 +24,171 @@ public class UserValidatorTest
 	
 	@Test
     public void givenFirstName_WhenProper_ShouldReturnTrue()
+		{
+			UserValidation validator=new UserValidation();
+			boolean result;
+			try {
+				result = validator.checkNameValidation("Kaushal");
+				Assert.assertEquals(true, result);
+			} catch (UserValidationException e) {
+				e.printStackTrace();
+			}
+				
+		}
+	
+	@Test
+    public void givenFirstName_WhenNull_ShouldThrowNullException()
     {
 		UserValidation validator=new UserValidation();
-    	boolean result = validator.firstNameValidation("Kaushal");
-    	Assert.assertEquals(true, result);	
+    	boolean result;
+		try {
+			result = validator.checkNameValidation(null);
+		} catch (UserValidationException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.exceptionType);
+			Assert.assertEquals("Enter proper value", e.getMessage());
+			Assert.assertEquals(UserValidationException.ExceptionType.ENTERED_NULL, e.exceptionType);
+		}
+    		
     }
 	
 	@Test
-    public void givenFirstName_WhenShort_ShouldReturnFalse()
+    public void givenFirstName_WhenInvalid_ShouldThrowInvalidException()
     {
 		UserValidation validator=new UserValidation();
-    	boolean result = validator.firstNameValidation("Ka");
-    	Assert.assertEquals(false, result);	
+    	boolean result;
+			try {
+				result = validator.checkNameValidation("Kaus@shal");
+			} catch (UserValidationException e) {
+				System.out.println(e.getMessage());
+				System.out.println(e.exceptionType);
+				Assert.assertEquals("Invalid entry, First and Last name starts with cap and atleast have 3 charcters", e.getMessage());
+				Assert.assertEquals(UserValidationException.ExceptionType.ENTERED_INVALID, e.exceptionType);
+			}		
     }
 	
 	@Test
-    public void givenFirstName_WhenNotProper_ShouldReturnFalse()
+    public void givenLastName_WhenInvalid_ShouldThrowInvalidException()
     {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.firstNameValidation("Ka@ushal");
-    	Assert.assertFalse(result);	
-    }
-	
-	@Test
-    public void givenLastName_WhenProper_ShouldReturnTrue()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.lastNameValidation("Yadav");
-    	Assert.assertEquals(true,result);	
-    }
-	
-	@Test
-    public void givenLastName_WhenShort_ShouldReturnFalse()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.lastNameValidation("Ya");
-    	Assert.assertEquals(false,result);	
-    }
-	
-	@Test
-    public void givenLastName_WhenNotProper_ShouldReturnFalse()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.lastNameValidation("Yada%v");
-    	Assert.assertFalse(result);	
-    }
+			UserValidation validator=new UserValidation();
+			boolean result;
+			try {
+				result = validator.checkNameValidation("yadav");
+			} catch (UserValidationException e) {
+				System.out.println(e.getMessage());
+				System.out.println(e.exceptionType);
+				Assert.assertEquals("Invalid entry, First and Last name starts with cap and atleast have 3 charcters", e.getMessage());
+				Assert.assertEquals(UserValidationException.ExceptionType.ENTERED_INVALID, e.exceptionType);
+			}
+				
+	}
 	
 	@Test
     public void givenEmail_WhenProper_ShouldReturnTrue()
     {
 		UserValidation validator=new UserValidation();
-    	boolean result = validator.emailValidation("abc@gmail.com");
-    	Assert.assertEquals(true,result);	
+    	boolean result;
+		
+			try {
+				result = validator.emailValidation("Kaushal@gmail.com");
+				Assert.assertEquals(true, result);
+			} 
+	       catch (Exception e) {
+			e.printStackTrace();
+		}
+    		
     }
 	
 	@Test
-    public void givenEmail_WhenContainsOptionalPart_ShouldReturnTrue()
+    public void givenEmail_WhenNull_ShouldThrowNullException()
     {
 		UserValidation validator=new UserValidation();
-    	boolean result = validator.emailValidation("abc44.holy@gmail.co.in");
-    	Assert.assertEquals(true,result);	
-    }
+    	boolean result;
+		try {
+				result = validator.emailValidation(null);
+			} catch (UserValidationException e) {
+				System.out.println(e.getMessage());
+				System.out.println(e.exceptionType);
+				Assert.assertEquals("Enter proper value", e.getMessage());
+				Assert.assertEquals(UserValidationException.ExceptionType.ENTERED_NULL, e.exceptionType);
+			}
+	} 
 	
 	@Test
-    public void givenEmail_WhenTwoConsecutiveDots_ShouldReturnFalse()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.emailValidation("a..bc@gmail.com");
-    	Assert.assertEquals(false,result);	
-    }
+    public void givenEmail_WhenInvalid_ShouldThrowInvalidException()
+		{
+			UserValidation validator=new UserValidation();
+			boolean result;
+			try {
+				result = validator.emailValidation("kaushal..@gmail.co.i");
+			} catch (UserValidationException e) {
+				System.out.println(e.getMessage());
+				System.out.println(e.exceptionType);
+				Assert.assertEquals("Invalid entry, Email should have mandatory parts and proper optional part i.e., mandatory.optional@mandatory.mandatory.optional", e.getMessage());
+				Assert.assertEquals(UserValidationException.ExceptionType.ENTERED_INVALID, e.exceptionType);
+			}
+				
+		}
 	
 	@Test
-    public void givenEmail_WhenOptionalShort_ShouldReturnFalse()
+    public void givenMobile_WhenNull_ShouldThrowNullException()
     {
 		UserValidation validator=new UserValidation();
-    	boolean result = validator.emailValidation("abc.xyz@gmail.com.a");
-    	Assert.assertFalse(result);	
-    }
+    	boolean result;
+		try {
+				result = validator.mobileNoValidation(null);
+			} catch (UserValidationException e) {
+				System.out.println(e.getMessage());
+				System.out.println(e.exceptionType);
+				Assert.assertEquals("Enter proper value", e.getMessage());
+				Assert.assertEquals(UserValidationException.ExceptionType.ENTERED_NULL, e.exceptionType);
+			}
+	} 
 	
 	@Test
-    public void givenEmail_WhenSpecialCharTld_ShouldReturnFalse()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.emailValidation("abc-100@gma@il.com.a");
-    	Assert.assertFalse(result);	
-    }
+    public void givenMobile_WhenInvalid_ShouldThrowInvalidException()
+		{
+			UserValidation validator=new UserValidation();
+			boolean result;
+			try {
+				result = validator.mobileNoValidation("91 98013418");
+			} catch (UserValidationException e) {
+				System.out.println(e.getMessage());
+				System.out.println(e.exceptionType);
+				Assert.assertEquals("Invalid entry, Enter proper 10 digit mobile number with country code", e.getMessage());
+				Assert.assertEquals(UserValidationException.ExceptionType.ENTERED_INVALID, e.exceptionType);
+			}
+				
+		}
 	
 	@Test
-    public void givenPhoneNo_WhenProper_ShouldReturnTrue()
+    public void givenPassword_WhenNull_ShouldThrowNullException()
     {
 		UserValidation validator=new UserValidation();
-    	boolean result = validator.mobileNoValidation("91 9801641805");
-    	Assert.assertEquals(true,result);	
-    }
+    	boolean result;
+		try {
+				result = validator.passwordValidation(null);
+			} catch (UserValidationException e) {
+				System.out.println(e.getMessage());
+				System.out.println(e.exceptionType);
+				Assert.assertEquals("Enter proper value", e.getMessage());
+				Assert.assertEquals(UserValidationException.ExceptionType.ENTERED_NULL, e.exceptionType);
+			}
+	} 
 	
 	@Test
-    public void givenPhoneNo_WhenInvalidCountryCode_ShouldReturnFalse()
+    public void givenPassword_WhenInvalid_ShouldThrowInvalidException()
     {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.mobileNoValidation("942 980164180");
-    	Assert.assertEquals(false,result);	
-    }
+			UserValidation validator=new UserValidation();
+			boolean result;
+			try {
+				result = validator.passwordValidation("91 98013418");
+			} catch (UserValidationException e) {
+				System.out.println(e.getMessage());
+				System.out.println(e.exceptionType);
+				Assert.assertEquals("Invalid entry, Enter proper password with atleast one uppercase,digit and special character", e.getMessage());
+				Assert.assertEquals(UserValidationException.ExceptionType.ENTERED_INVALID, e.exceptionType);
+			}		
+	}
 	
-	@Test
-    public void givenPhoneNo_WhenShort_ShouldReturnFalse()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.mobileNoValidation("91 98016418");
-    	Assert.assertEquals(false,result);	
-    }
-	
-	@Test
-    public void givenPhoneNo_WhenWithoutSpace_ShouldReturnFalse()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.mobileNoValidation("919801641805");
-    	Assert.assertFalse(result);	
-    }
-	
-	@Test
-    public void givenPhoneNo_WhenStartWithZero_ShouldReturnFalse()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.mobileNoValidation("91 0801641805");
-    	Assert.assertFalse(result);	
-    }
-	
-	@Test
-    public void givenPassword_WhenProperLength_ShouldReturnTrue()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.passwordValidation("Joshua@pattrick007");
-    	Assert.assertTrue(result);	
-    }
-	
-	@Test
-    public void givenPassword_WhenNotProperLength_ShouldReturnFalse()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.passwordValidation("jo84a");
-    	Assert.assertEquals(false,result);	
-    }
-	
-	@Test
-    public void givenPassword_WhenAtleastOneUpperCase_ShouldReturnTrue()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.passwordValidation("Joshua_847");
-    	Assert.assertTrue(result);	
-    }
-	
-	@Test
-    public void givenPassword_WhenNoUpperCase_ShouldReturnFalse()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.passwordValidation("joshua_847");
-    	Assert.assertFalse(result);	
-    }
-	
-	@Test
-    public void givenPassword_WhenProperWithNumber_ShouldReturnTrue()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.passwordValidation("Joshua@patrick7");
-    	Assert.assertTrue(result);	
-    }
-	
-	@Test
-    public void givenPassword_WhenImproperWithNumber_ShouldReturnFalse()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.passwordValidation("Joshua@patrick");
-    	Assert.assertFalse(result);	
-    }
-	
-	@Test
-    public void givenPassword_WhenProperWithSpecialChar_ShouldReturnTrue()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.passwordValidation("Joshua@patrick98");
-    	Assert.assertTrue(result);	
-    }
-	
-	@Test
-    public void givenPassword_WhenProperWithoutSpecialChar_ShouldReturnFalse()
-    {
-		UserValidation validator=new UserValidation();
-    	boolean result = validator.passwordValidation("Joshuapatrick98");
-    	Assert.assertFalse(result);	
-    }
 }
