@@ -20,13 +20,17 @@ public class UserValidation {
 		return "HAPPY";	
 	}
 	
-	public void checkNull(String data) throws UserValidationException {
-		if(data==null)
+	public void checkNullEmpty(String data) throws UserValidationException {
+		try {
+			if(data.length()==0)
+			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_EMPTY,"Enter proper value");
+		}catch(NullPointerException e) {
 			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_NULL,"Enter proper value");
+	}
 	}
 	
 	public boolean checkNameValidation(String name) throws UserValidationException {
-		checkNull(name);
+		checkNullEmpty(name);
 		boolean valid = CHECK_NAME.matcher(name).matches();
 		if(!valid) {
 			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_INVALID,"Invalid entry, First and Last name starts with cap and atleast have 3 charcters");
@@ -35,7 +39,7 @@ public class UserValidation {
 	}
 	
 	public boolean emailValidation(String email) throws UserValidationException {
-		checkNull(email);
+		checkNullEmpty(email);
 		boolean valid = EMAIL_PATTERN.matcher(email).matches();
 		if(!valid) {
 			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_INVALID,"Invalid entry, Email should have mandatory parts and proper optional part i.e., mandatory.optional@mandatory.mandatory.optional");
@@ -44,7 +48,7 @@ public class UserValidation {
 	}
 	
 	public boolean mobileNoValidation(String phno) throws UserValidationException {
-		checkNull(phno);
+		checkNullEmpty(phno);
 		boolean valid = MOBILE_PATTERN.matcher(phno).matches();
 		if(!valid) {
 			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_INVALID,"Invalid entry, Enter proper 10 digit mobile number with country code");
@@ -53,7 +57,7 @@ public class UserValidation {
 	}
 	
 	public boolean passwordValidation(String psswd) throws UserValidationException {
-		checkNull(psswd);
+		checkNullEmpty(psswd);
 		boolean valid = PASSWORD_PATTERN.matcher(psswd).matches();
 		if(!valid) {
 			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_INVALID,"Invalid entry, Enter proper password with atleast one uppercase,digit and special character");

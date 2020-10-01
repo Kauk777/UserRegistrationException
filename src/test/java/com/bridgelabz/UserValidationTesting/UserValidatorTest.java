@@ -53,6 +53,22 @@ public class UserValidatorTest
     }
 	
 	@Test
+    public void givenFirstName_WhenEmpty_ShouldThrowEmptyException()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result;
+		try {
+			result = validator.checkNameValidation("");
+		} catch (UserValidationException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.exceptionType);
+			Assert.assertEquals("Enter proper value", e.getMessage());
+			Assert.assertEquals(UserValidationException.ExceptionType.ENTERED_EMPTY, e.exceptionType);
+		}
+    		
+    }
+	
+	@Test
     public void givenFirstName_WhenInvalid_ShouldThrowInvalidException()
     {
 		UserValidation validator=new UserValidation();
@@ -115,6 +131,22 @@ public class UserValidatorTest
 	} 
 	
 	@Test
+    public void givenEmail_WhenEmpty_ShouldThrowEmptyException()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result;
+		try {
+				result = validator.emailValidation("");
+			} catch (UserValidationException e) {
+				System.out.println(e.getMessage());
+				System.out.println(e.exceptionType);
+				Assert.assertEquals("Enter proper value", e.getMessage());
+				Assert.assertEquals(UserValidationException.ExceptionType.ENTERED_EMPTY, e.exceptionType);
+			}
+	} 
+	
+	
+	@Test
     public void givenEmail_WhenInvalid_ShouldThrowInvalidException()
 		{
 			UserValidation validator=new UserValidation();
@@ -142,6 +174,21 @@ public class UserValidatorTest
 				System.out.println(e.exceptionType);
 				Assert.assertEquals("Enter proper value", e.getMessage());
 				Assert.assertEquals(UserValidationException.ExceptionType.ENTERED_NULL, e.exceptionType);
+			}
+	} 
+	
+	@Test
+    public void givenMobile_WhenEmpty_ShouldThrowEmptyException()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result;
+		try {
+				result = validator.mobileNoValidation("");
+			} catch (UserValidationException e) {
+				System.out.println(e.getMessage());
+				System.out.println(e.exceptionType);
+				Assert.assertEquals("Enter proper value", e.getMessage());
+				Assert.assertEquals(UserValidationException.ExceptionType.ENTERED_EMPTY, e.exceptionType);
 			}
 	} 
 	
@@ -175,6 +222,22 @@ public class UserValidatorTest
 				Assert.assertEquals(UserValidationException.ExceptionType.ENTERED_NULL, e.exceptionType);
 			}
 	} 
+	
+	@Test
+    public void givenPassword_WhenEmpty_ShouldThrowEmptyException()
+    {
+		UserValidation validator=new UserValidation();
+    	boolean result;
+		try {
+				result = validator.passwordValidation("");
+			} catch (UserValidationException e) {
+				System.out.println(e.getMessage());
+				System.out.println(e.exceptionType);
+				Assert.assertEquals("Enter proper value", e.getMessage());
+				Assert.assertEquals(UserValidationException.ExceptionType.ENTERED_EMPTY, e.exceptionType);
+			}
+	} 
+	
 	
 	@Test
     public void givenPassword_WhenInvalid_ShouldThrowInvalidException()
