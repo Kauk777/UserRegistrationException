@@ -37,8 +37,13 @@ public class EmailValidationTesting {
     public void givenEmail_WhenValid_ShouldReturnTrue() throws UserValidationException
     {
 		UserValidation validator=new UserValidation();
-    	boolean result = validator.emailValidation(this.emailToTest);
-    	Assert.assertEquals(this.expectedResult,result);	
+		boolean result;
+    	try {
+    		result = validator.emailValidation(this.emailToTest);
+    		Assert.assertEquals(this.expectedResult,result);
+    	}
+    	catch(UserValidationException e) {
+    	}
     }
 	
 }
