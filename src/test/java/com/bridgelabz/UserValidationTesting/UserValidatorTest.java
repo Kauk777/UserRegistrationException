@@ -32,8 +32,7 @@ public class UserValidatorTest
 				Assert.assertEquals(true, result);
 			} catch (UserValidationException e) {
 				e.printStackTrace();
-			}
-				
+			}	
 		}
 	
 	@Test

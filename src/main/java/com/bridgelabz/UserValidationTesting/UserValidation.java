@@ -1,6 +1,12 @@
 package com.bridgelabz.UserValidationTesting;
 
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
+
+@FunctionalInterface
+interface CheckValidation {
+	boolean validation(String str) throws UserValidationException;
+}
 
 public class UserValidation {
 	
@@ -20,49 +26,50 @@ public class UserValidation {
 		return "HAPPY";	
 	}
 	
-	public void checkNullEmpty(String data) throws UserValidationException {
+	CheckValidation checkNullEmpty=(data) -> {
 		try {
 			if(data.length()==0)
 			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_EMPTY,"Enter proper value");
 		}catch(NullPointerException e) {
 			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_NULL,"Enter proper value");
-	}
-	}
+		}
+		return true;
+	};
 	
 	public boolean checkNameValidation(String name) throws UserValidationException {
-		checkNullEmpty(name);
-		boolean valid = CHECK_NAME.matcher(name).matches();
-		if(!valid) {
+		checkNullEmpty.validation(name);
+		Predicate<String> valid= na-> CHECK_NAME.matcher(na).matches();
+		if(!(valid.test(name))) {
 			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_INVALID,"Invalid entry, First and Last name starts with cap and atleast have 3 charcters");
 		}
-		return valid;
+		return valid.test(name);
 	}
 	
 	public boolean emailValidation(String email) throws UserValidationException {
-		checkNullEmpty(email);
-		boolean valid = EMAIL_PATTERN.matcher(email).matches();
-		if(!valid) {
+		checkNullEmpty.validation(email);
+		Predicate<String> valid= na-> EMAIL_PATTERN.matcher(na).matches();
+		if(!(valid.test(email))) {
 			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_INVALID,"Invalid entry, Email should have mandatory parts and proper optional part i.e., mandatory.optional@mandatory.mandatory.optional");
 		}
-		return valid;
+		return valid.test(email);
 	}
 	
 	public boolean mobileNoValidation(String phno) throws UserValidationException {
-		checkNullEmpty(phno);
-		boolean valid = MOBILE_PATTERN.matcher(phno).matches();
-		if(!valid) {
+		checkNullEmpty.validation(phno);
+		Predicate<String> valid= na-> MOBILE_PATTERN.matcher(na).matches();
+		if(!(valid.test(phno))) {
 			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_INVALID,"Invalid entry, Enter proper 10 digit mobile number with country code");
 		}
-		return valid;
+		return valid.test(phno);
 	}
 	
 	public boolean passwordValidation(String psswd) throws UserValidationException {
-		checkNullEmpty(psswd);
-		boolean valid = PASSWORD_PATTERN.matcher(psswd).matches();
-		if(!valid) {
+		checkNullEmpty.validation(psswd);
+		Predicate<String> valid= na-> PASSWORD_PATTERN.matcher(na).matches();
+		if(!(valid.test(psswd))) {
 			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_INVALID,"Invalid entry, Enter proper password with atleast one uppercase,digit and special character");
 		}
-		return valid;
+		return valid.test(psswd);
 	}
 
 }
