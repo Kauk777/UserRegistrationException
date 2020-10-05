@@ -28,7 +28,7 @@ public class UserValidatorTest
 			UserValidation validator=new UserValidation();
 			boolean result;
 			try {
-				result = validator.checkNameValidation("Kaushal");
+				result = validator.checkNameValidation.validation("Kaushal");
 				Assert.assertEquals(true, result);
 			} catch (UserValidationException e) {
 				e.printStackTrace();
@@ -41,7 +41,7 @@ public class UserValidatorTest
 		UserValidation validator=new UserValidation();
     	boolean result;
 		try {
-			result = validator.checkNameValidation(null);
+			result = validator.checkNameValidation.validation(null);
 		} catch (UserValidationException e) {
 			System.out.println(e.getMessage());
 			System.out.println(e.exceptionType);
@@ -57,7 +57,7 @@ public class UserValidatorTest
 		UserValidation validator=new UserValidation();
     	boolean result;
 		try {
-			result = validator.checkNameValidation("");
+			result = validator.checkNameValidation.validation("");
 		} catch (UserValidationException e) {
 			System.out.println(e.getMessage());
 			System.out.println(e.exceptionType);
@@ -73,7 +73,7 @@ public class UserValidatorTest
 		UserValidation validator=new UserValidation();
     	boolean result;
 			try {
-				result = validator.checkNameValidation("Kaus@shal");
+				result = validator.checkNameValidation.validation("Kaus@shal");
 			} catch (UserValidationException e) {
 				System.out.println(e.getMessage());
 				System.out.println(e.exceptionType);
@@ -88,7 +88,7 @@ public class UserValidatorTest
 			UserValidation validator=new UserValidation();
 			boolean result;
 			try {
-				result = validator.checkNameValidation("yadav");
+				result = validator.checkNameValidation.validation("yadav");
 			} catch (UserValidationException e) {
 				System.out.println(e.getMessage());
 				System.out.println(e.exceptionType);
@@ -105,7 +105,7 @@ public class UserValidatorTest
     	boolean result;
 		
 			try {
-				result = validator.emailValidation("Kaushal@gmail.com");
+				result = validator.emailValidation.validation("Kaushal@gmail.com");
 				Assert.assertEquals(true, result);
 			} 
 	       catch (Exception e) {
@@ -120,7 +120,7 @@ public class UserValidatorTest
 		UserValidation validator=new UserValidation();
     	boolean result;
 		try {
-				result = validator.emailValidation(null);
+				result = validator.emailValidation.validation(null);
 			} catch (UserValidationException e) {
 				System.out.println(e.getMessage());
 				System.out.println(e.exceptionType);
@@ -135,7 +135,7 @@ public class UserValidatorTest
 		UserValidation validator=new UserValidation();
     	boolean result;
 		try {
-				result = validator.emailValidation("");
+				result = validator.emailValidation.validation("");
 			} catch (UserValidationException e) {
 				System.out.println(e.getMessage());
 				System.out.println(e.exceptionType);
@@ -151,7 +151,7 @@ public class UserValidatorTest
 			UserValidation validator=new UserValidation();
 			boolean result;
 			try {
-				result = validator.emailValidation("kaushal..@gmail.co.i");
+				result = validator.emailValidation.validation("kaushal..@gmail.co.i");
 			} catch (UserValidationException e) {
 				System.out.println(e.getMessage());
 				System.out.println(e.exceptionType);
@@ -167,7 +167,7 @@ public class UserValidatorTest
 		UserValidation validator=new UserValidation();
     	boolean result;
 		try {
-				result = validator.mobileNoValidation(null);
+				result = validator.mobileNoValidation.validation(null);
 			} catch (UserValidationException e) {
 				System.out.println(e.getMessage());
 				System.out.println(e.exceptionType);
@@ -182,7 +182,7 @@ public class UserValidatorTest
 		UserValidation validator=new UserValidation();
     	boolean result;
 		try {
-				result = validator.mobileNoValidation("");
+				result = validator.mobileNoValidation.validation("");
 			} catch (UserValidationException e) {
 				System.out.println(e.getMessage());
 				System.out.println(e.exceptionType);
@@ -197,7 +197,7 @@ public class UserValidatorTest
 			UserValidation validator=new UserValidation();
 			boolean result;
 			try {
-				result = validator.mobileNoValidation("91 98013418");
+				result = validator.mobileNoValidation.validation("91 98013418");
 			} catch (UserValidationException e) {
 				System.out.println(e.getMessage());
 				System.out.println(e.exceptionType);
@@ -213,7 +213,7 @@ public class UserValidatorTest
 		UserValidation validator=new UserValidation();
     	boolean result;
 		try {
-				result = validator.passwordValidation(null);
+				result = validator.passwordValidation.validation(null);
 			} catch (UserValidationException e) {
 				System.out.println(e.getMessage());
 				System.out.println(e.exceptionType);
@@ -228,7 +228,7 @@ public class UserValidatorTest
 		UserValidation validator=new UserValidation();
     	boolean result;
 		try {
-				result = validator.passwordValidation("");
+				result = validator.passwordValidation.validation("");
 			} catch (UserValidationException e) {
 				System.out.println(e.getMessage());
 				System.out.println(e.exceptionType);
@@ -244,7 +244,7 @@ public class UserValidatorTest
 			UserValidation validator=new UserValidation();
 			boolean result;
 			try {
-				result = validator.passwordValidation("91 98013418");
+				result = validator.passwordValidation.validation("91 98013418");
 			} catch (UserValidationException e) {
 				System.out.println(e.getMessage());
 				System.out.println(e.exceptionType);

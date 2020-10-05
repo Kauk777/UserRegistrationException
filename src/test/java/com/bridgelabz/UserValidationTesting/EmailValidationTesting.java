@@ -39,7 +39,7 @@ public class EmailValidationTesting {
 		UserValidation validator=new UserValidation();
 		boolean result;
     	try {
-    		result = validator.emailValidation(this.emailToTest);
+    		result = validator.emailValidation.validation(this.emailToTest);
     		Assert.assertEquals(this.expectedResult,result);
     	}
     	catch(UserValidationException e) {

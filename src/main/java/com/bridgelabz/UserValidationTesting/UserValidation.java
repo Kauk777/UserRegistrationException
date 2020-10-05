@@ -36,40 +36,40 @@ public class UserValidation {
 		return true;
 	};
 	
-	public boolean checkNameValidation(String name) throws UserValidationException {
+	CheckValidation checkNameValidation=(String name) -> {
 		checkNullEmpty.validation(name);
-		Predicate<String> valid= na-> CHECK_NAME.matcher(na).matches();
-		if(!(valid.test(name))) {
+		boolean valid=  CHECK_NAME.matcher(name).matches();
+		if(!valid) {
 			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_INVALID,"Invalid entry, First and Last name starts with cap and atleast have 3 charcters");
 		}
-		return valid.test(name);
-	}
+		return valid;
+	};
 	
-	public boolean emailValidation(String email) throws UserValidationException {
+	CheckValidation emailValidation=(String email) -> {
 		checkNullEmpty.validation(email);
-		Predicate<String> valid= na-> EMAIL_PATTERN.matcher(na).matches();
-		if(!(valid.test(email))) {
+		boolean valid= EMAIL_PATTERN.matcher(email).matches();
+		if(!valid) {
 			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_INVALID,"Invalid entry, Email should have mandatory parts and proper optional part i.e., mandatory.optional@mandatory.mandatory.optional");
 		}
-		return valid.test(email);
-	}
+		return valid;
+	};
 	
-	public boolean mobileNoValidation(String phno) throws UserValidationException {
+	CheckValidation mobileNoValidation=(String phno) -> {
 		checkNullEmpty.validation(phno);
-		Predicate<String> valid= na-> MOBILE_PATTERN.matcher(na).matches();
-		if(!(valid.test(phno))) {
+		boolean valid= MOBILE_PATTERN.matcher(phno).matches();
+		if(!valid) {
 			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_INVALID,"Invalid entry, Enter proper 10 digit mobile number with country code");
 		}
-		return valid.test(phno);
-	}
+		return valid;
+	};
 	
-	public boolean passwordValidation(String psswd) throws UserValidationException {
+	CheckValidation passwordValidation=(String psswd) -> {
 		checkNullEmpty.validation(psswd);
-		Predicate<String> valid= na-> PASSWORD_PATTERN.matcher(na).matches();
-		if(!(valid.test(psswd))) {
+		boolean valid=  PASSWORD_PATTERN.matcher(psswd).matches();
+		if(!valid) {
 			throw new UserValidationException(UserValidationException.ExceptionType.ENTERED_INVALID,"Invalid entry, Enter proper password with atleast one uppercase,digit and special character");
 		}
-		return valid.test(psswd);
-	}
+		return valid;
+	};
 
 }
